@@ -6,6 +6,9 @@ import java.util.Scanner;
 import Model.Hotel;
 import Model.HotelManagementService;
 
+import java.text.ParseException;
+import java.util.Scanner;
+
 public class Application {
     Scanner scanner = new Scanner(System.in);
     HotelManagementService hotelManagementSystem = new HotelManagementService();
@@ -44,8 +47,12 @@ public class Application {
         String name = scanner.next();
         System.out.println("Enter weekday rate ");
         float rate = scanner.nextFloat();
-        hotel.setHotelName(name);
-        hotel.setRates(rate);
+	System.out.println("Enter weekend rate");
+        float weekendRate = scanner.nextFloat();
+        hotel.setName(name);
+        hotel.setRate(rate);
+	        hotel.setWeekendRate(weekendRate);
+
         hotelManagementSystem.hotelList.add(hotel);
         System.out.println(hotelManagementSystem.hotelList);
     }
@@ -58,7 +65,7 @@ public class Application {
         int days = hotelManagementSystem.findDateDifference(checkInDate, checkOutDate);
         System.out.println("Number of days stying in hotel " +days);
         Hotel cheapestHotel = hotelManagementSystem.findCheapestHotel(days);
-        float totalRate = cheapestHotel.getRates() * days;
-        System.out.println("Cheapest hotel is " + cheapestHotel.getHotelName() + " having rate $ " + totalRate);
+        float totalRate = cheapestHotel.getRate() * days;
+        System.out.println("Cheapest hotel is " + cheapestHotel.getName() + " having rate $ " + totalRate);
     }
 }

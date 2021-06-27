@@ -8,16 +8,14 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 public class HotelManagementService {
     Scanner scanner = new Scanner(System.in);
-    public List<Hotel> hotelList = new ArrayList<>();
-    /**
-     * 
-     * @param startDate stay date 
-     * @param endDate
-     * @return show date 
-     * @throws ParseException
-     */
+    List<Hotel> hotelList = new ArrayList<>();
 
     public int findDateDifference(String startDate, String endDate) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
@@ -27,9 +25,6 @@ public class HotelManagementService {
         int days = (int) TimeUnit.DAYS.convert(differenceInMillies, TimeUnit.MILLISECONDS);
         return days;
     }
-    /**
-     * compare cheapest hotel
-     */
 
     Comparator<Hotel> minComparator = new Comparator<Hotel>() {
         @Override
@@ -39,12 +34,6 @@ public class HotelManagementService {
         }
     };
 
-    /**
-     * 
-     * @param numDays
-     * @return 
-     * show cheap hotel date 
-     */
 
     public Hotel findCheapestHotel(int numDays) {
         int lowestRate;
@@ -53,8 +42,5 @@ public class HotelManagementService {
         return hotel.get();
     }
 }
-
-
-
 
 
